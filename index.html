@@ -3,8 +3,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Visualizador DPV</title>
+
+
+<script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.js"></script>
+<link href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" rel="stylesheet"/>
+
 </head>
 
+<div id="mly" style="width: 400px; height: 300px;"></div>
+<script>
+  var {Viewer} = mapillary;
+
+  var viewer = new Viewer({
+    accessToken: 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
+    container: 'mly', // the ID of our container defined in the HTML body
+    imageId: '1376956613823456',
+  });
+</script>
 <body>
 </body>
 </html>
