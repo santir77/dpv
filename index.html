@@ -10,15 +10,45 @@
 
 </head>
 
-<div id="mly" style="width: 100%; height: 100%;"></div>
 <script>
-  var {Viewer} = mapillary;
 
-  var viewer = new Viewer({
-    accessToken: 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
-    container: 'mly', // the ID of our container defined in the HTML body
-    imageId: '1376956613823456',
-  });
+
+function renderMapillary(props) {
+  class ViewerComponent extends React.Component {
+    constructor(props) {
+      super(props);
+      this.containerRef = React.createRef();
+    }
+
+    componentDidMount() {
+      this.viewer = new Viewer({
+        accessToken: this.props.accessToken,
+        container: this.containerRef.current,
+        imageId: this.props.imageId,
+      });
+    }
+
+    componentWillUnmount() {
+      if (this.viewer) {
+        this.viewer.remove();
+      }
+    }
+
+    render() {
+      return <div ref={this.containerRef} style={this.props.style} />;
+    }
+  }
+
+  return (
+    <ViewerComponent
+      accessToken={'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe'}
+      imageId={'1376956613823456'}
+      style={{width: '100%', height: '300px'}}
+    />
+  );
+  }
+
+  
 </script>
 <body>
 </body>
