@@ -65,18 +65,19 @@
                 });
 
                 viewer.moveTo(imageId).catch((error) => console.warn(error));
-
                 viewer.setFilter(["==", "cameraType", "spherical"])
-                viewer.setFilter(["in", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0");
-                    
+                viewer.setFilter(["in", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0");  
                 viewer.on("load", (event) => console.log(event.type));
 
                 
             })();
 
-
-          
+            function checkSupport() {
+                const sup = `isSupported: ${isSupported()}`;
+                const fSup = `isFallbackSupported: ${isFallbackSupported()}`;
+                console.log(`${sup}, ${fSup}`);
             }
+            
         </script>
     </body>
 </html>
