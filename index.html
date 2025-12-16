@@ -6,6 +6,8 @@
 
 
 <script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.js"></script>
+<script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.module.js"></script>
+        
 <link href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" rel="stylesheet"/>
 
 
@@ -37,15 +39,17 @@
 
 <script type="module">
             import { SimpleMarker, Viewer } from "/dist/mapillary.module.js";
-            import { accessToken } from "/doc-src/.access-token/token.js";
+            //import { accessToken } from "/doc-src/.access-token/token.js";
 
             const imageId = "1376956613823456";
 
             const mly = new Viewer({
-                accessToken,
+                accessToken : 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
                 component: { cover: false, marker: true },
                 container: "mly",
             });
+
+
 
             const createTimes = [];
             const addTimes = [];
