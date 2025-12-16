@@ -50,7 +50,7 @@
             (function main() {
                 checkSupport();
 
-                const imageId = "888410556844571";
+                const imageId = "850491630689631";
 
                 const container = document.createElement("div");
                 container.className = "viewer";
@@ -66,80 +66,16 @@
 
                 viewer.moveTo(imageId).catch((error) => console.warn(error));
 
+                viewer.setFilter(["==", "cameraType", "spherical"])
+                viewer.setFilter(["in", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0");
+                    
                 viewer.on("load", (event) => console.log(event.type));
 
-                addButtons(viewer);
+                
             })();
 
-            function checkSupport() {
-                const sup = `isSupported: ${isSupported()}`;
-                const fSup = `isFallbackSupported: ${isFallbackSupported()}`;
-                console.log(`${sup}, ${fSup}`);
-            }
 
-            function addButton(content, handler) {
-                const button = document.createElement("button");
-                button.textContent = content;
-                button.addEventListener("click", handler);
-                document.body.append(button);
-            }
-
-            function addButtons(viewer) {
-                addButton("Activate", () => viewer.deactivateCover());
-                addButton("Deactivate", () => viewer.activateCover());
-                addButton("Remove", () => viewer.remove());
-                addButton("Fill", () => viewer.setRenderMode(RenderMode.Fill));
-                addButton("Letterbox", () =>
-                    viewer.setRenderMode(RenderMode.Letterbox)
-                );
-                addButton("Gravity", () =>
-                    viewer.setCameraControls(CameraControls.Gravity)
-                );
-                addButton("Street", () =>
-                    viewer.setCameraControls(CameraControls.Street)
-                );
-
-                let filterIndex = 0;
-                const filters = [
-                    [],
-                    ["==", "cameraType", "spherical"],
-                    ["==", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0"],  
-                ];
-                addButton("Filter", () => {
-                    filterIndex = (filterIndex + 1) % filters.length;
-                    viewer.setFilter(filters[filterIndex]).then(function (n) {
-                        console.log("filter", filters[filterIndex]);
-                    });
-                });
-
-                const sequenceComponent = viewer.getComponent("sequence");
-                addButton("Play", () => {
-                    viewer.deactivateComponent("cache");
-                    sequenceComponent.play();
-                });
-                addButton("Stop", () => {
-                    viewer.activateComponent("cache");
-                    sequenceComponent.stop();
-                });
-
-                let sliderActive = false;
-                addButton("Slider", () => {
-                    if (sliderActive) {
-                        viewer.activateComponent("image");
-                        viewer.activateComponent("direction");
-                        viewer.activateComponent("sequence");
-                        viewer.activateComponent("keyboard");
-                        viewer.deactivateComponent("slider");
-                        sliderActive = false;
-                    } else {
-                        viewer.activateComponent("slider");
-                        viewer.deactivateComponent("image");
-                        viewer.deactivateComponent("direction");
-                        viewer.deactivateComponent("sequence");
-                        viewer.deactivateComponent("keyboard");
-                        sliderActive = true;
-                    }
-                });
+          
             }
         </script>
     </body>
