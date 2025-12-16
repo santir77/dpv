@@ -28,12 +28,12 @@
 <body>
 
 
-<div id="mly" style="width: 900px; height: 500px;"></div>
+<!--<div id="mly" style="width: 900px; height: 500px;"></div>-->
 
 
 
 
-<script>
+<script type="module">
   
   /*var {Viewer} = mapillary;
   var viewer = new Viewer({
@@ -42,52 +42,20 @@
     imageId: '1376956613823456',
   });*/
 
-
-
-  function render(props) {
-  let viewer;
-  let coverViewer;
-  function dispose() {
-    if (viewer) {
-      viewer.remove();
-    }
-  }
-  function disposeCover() {
-    if (coverViewer) {
-      coverViewer.remove();
-    }
-  }
+ const container = document.createElement("div");
+            container.className = "viewer";
+            document.body.appendChild(container);
 
   const accessToken = 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe';   
-  const container = 'mly';        
   const style = {height: '400px', width: '50%', display: 'inline-block'};
   const imageId = '1376956613823456';
+       
+ init({ accessToken, container });
 
-  function init(opts) {
-    const {accessToken, container} = opts;
-    const options = {accessToken, container};
-    viewer = new Viewer(options);
-    viewer.moveTo(imageId).catch(mapillaryErrorHandler);
-  }
 
-  function initCover(opts) {
-    const {accessToken, container} = opts;
-    const options = {
-      accessToken,
-      component: {cover: true},
-      container,
-      imageId,
-    };
-    coverViewer = new Viewer(options);
-  }
+import { init } from "component.js";
 
-  return (
-    <div>
-      <ViewerComponent init={init} dispose={dispose} style={style} />
-      <ViewerComponent init={initCover} dispose={disposeCover} style={style} />
-    </div>
-  );
-}     
+  
   
 </script>
        
