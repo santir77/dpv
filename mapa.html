@@ -52,11 +52,11 @@
             
             //import { accessToken } from "/doc-src/.access-token/token.js";
 
-            const imageId = "1860845448154692";
+            const imageId = "1649559693086126";
 
             // Setup map
             const map = L.map("map").setView(
-                [-26.4079835, -54.5729162],
+                [-26.40844032798278, -54.581478159094274],
                 18
             );
             const osmUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
@@ -79,7 +79,7 @@
             });
 
             mly.setFilter(["==", "cameraType", "spherical"]);
-            mly.setFilter(["in", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0"]);
+            mly.setFilter(["in", "sequenceId", "wDqleaJvONRSjT0QUhuBH5"]);
             
             mly.moveTo(imageId).then(
                 () => {
@@ -133,7 +133,21 @@
 
             // Get marker component
             const markerComponent = mly.getComponent("marker");
-
+			
+			
+			
+			 markerComponent.add([
+				
+				new SimpleMarker(
+				  'fixed-1',
+				  {
+					lat: -26.40844032798278,
+					lng: -54.581478159094274,
+				  },
+				  {ballColor: 0x000000, ballOpacity: 1},
+				),
+			  ]);
+  
             // Show a flat circle marker in the viewer when hovering the map
             let mapHoverViewerMarker;
 
