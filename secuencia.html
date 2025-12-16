@@ -50,7 +50,7 @@
             (function main() {
                 checkSupport();
 
-                const imageId = "303729947926829";
+                const imageId = "1419245506440386";
 
                 const container = document.createElement("div");
                 container.className = "viewer";
@@ -103,26 +103,7 @@
                 const filters = [
                     [],
                     ["==", "cameraType", "spherical"],
-                    ["==", "sequenceId", "s5I5m7BvYykB677MpFnOIw"],
-                    [
-                        "in",
-                        "sequenceId",
-                        "s5I5m7BvYykB677MpFnOIw",
-                        "-aC4wx-8oOkCp6SFGXoyAg",
-                    ],
-                    [
-                        "all",
-                        [
-                            ">=",
-                            "capturedAt",
-                            1370509079741 - 24 * 60 * 60 * 1000,
-                        ],
-                        [
-                            "<=",
-                            "capturedAt",
-                            1370509079741 + 24 * 60 * 60 * 1000,
-                        ],
-                    ],
+                    ["==", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0"],  
                 ];
                 addButton("Filter", () => {
                     filterIndex = (filterIndex + 1) % filters.length;
