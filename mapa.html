@@ -9,7 +9,7 @@
             content="initial-scale=1,maximum-scale=1,user-scalable=no"
         />
 
-        <link rel="stylesheet" href="/dist/mapillary.css" />
+        <link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" />
         <link
             href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css"
             rel="stylesheet"
@@ -78,6 +78,9 @@
                 container: "mly",
             });
 
+            mly.setFilter(["==", "cameraType", "spherical"]);
+            mly.setFilter(["in", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0"]);
+            
             mly.moveTo(imageId).then(
                 () => {
                     /* noop */
