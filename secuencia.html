@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>DPV Misiones</title>
+        <title>DPV Misines </title>
         <link rel="icon" href="data:," />
         <meta charset="utf-8" />
         <meta
@@ -9,7 +9,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no"
         />
 
-        <link href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="/dist/mapillary.css" />
 
         <style>
             body {
@@ -23,7 +23,7 @@
                 height: 100%;
             }
 
-            .mly {
+            .viewer {
                 width: 100%;
                 height: calc(100% - 32px);
             }
@@ -37,10 +37,6 @@
     </head>
 
     <body>
-
-
-<div id="mly"></div>
-      
         <script type="module">
             import {
                 isFallbackSupported,
@@ -50,22 +46,21 @@
                 Viewer,
             } from "https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.module.js";
             
-          //import { accessToken } from "/doc-src/.access-token/token.js";
 
             (function main() {
                 checkSupport();
 
-                const imageId = "1860845448154692";
+                const imageId = "303729947926829";
 
-                /*const container = document.createElement("div");
+                const container = document.createElement("div");
                 container.className = "viewer";
-                document.body.append(container);*/
+                document.body.append(container);
 
                 const viewer = new Viewer({
-                    accessToken: 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
+                    accessToken : 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
                     cameraControls: CameraControls.Gravity,
                     component: { cover: false },
-                    container: "mly",
+                    container,
                     renderMode: RenderMode.Letterbox,
                 });
 
@@ -108,11 +103,11 @@
                 const filters = [
                     [],
                     ["==", "cameraType", "spherical"],
-                    ["==", "sequenceId", "XHjVA10tv5zKY6bF2wrh9O"],
+                    ["==", "sequenceId", "s5I5m7BvYykB677MpFnOIw"],
                     [
                         "in",
                         "sequenceId",
-                        "XHjVA10tv5zKY6bF2wrh9O",
+                        "s5I5m7BvYykB677MpFnOIw",
                         "-aC4wx-8oOkCp6SFGXoyAg",
                     ],
                     [
@@ -120,12 +115,12 @@
                         [
                             ">=",
                             "capturedAt",
-                            1761015600 - 24 * 60 * 60 * 1000,
+                            1370509079741 - 24 * 60 * 60 * 1000,
                         ],
                         [
                             "<=",
                             "capturedAt",
-                            1761015600 + 24 * 60 * 60 * 1000,
+                            1370509079741 + 24 * 60 * 60 * 1000,
                         ],
                     ],
                 ];
