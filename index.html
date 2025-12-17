@@ -6,20 +6,169 @@
 
 
 <script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.js"></script>
+<script src="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.module.js"></script>
+        
 <link href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" rel="stylesheet"/>
 
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+            }
+
+            #mly {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+  
 </head>
 
-<div id="mly" style="width: 50%; height: 100%;"></div>
-<script>
-  var {Viewer} = mapillary;
+<body>
 
+
+<div id="mly"></div>
+
+
+<script type="module">
+            import { SimpleMarker, Viewer } from "https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.module.js";
+            //import { accessToken } from "/doc-src/.access-token/token.js";
+
+            const imageId = "1376956613823456";
+
+            const mly = new Viewer({
+                accessToken : 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
+                component: { cover: false, marker: true },
+                container: "mly",
+            });
+
+
+
+            const createTimes = [];
+            const addTimes = [];
+            const batchSize = 1000;
+            let markerCount = 0;
+
+            const markerComponent = mly.getComponent("marker");
+
+            // Log performance results
+            const logTimes = function () {
+                const totalCreateTime = createTimes.reduce(function (acc, val) {
+                    return acc + val;
+                }, 0);
+
+                const totalAddTime = addTimes.reduce(function (acc, val) {
+                    return acc + val;
+                }, 0);
+
+                console.log("Markers added:", markerCount);
+                console.log("Batch size:", batchSize);
+                console.log("Total create time:", totalCreateTime.toFixed(2));
+                console.log(
+                    "Average batch create time:",
+                    (totalCreateTime / createTimes.length).toFixed(2)
+                );
+                console.log(
+                    "Average marker create time:",
+                    (totalCreateTime / createTimes.length / batchSize).toFixed(
+                        4
+                    )
+                );
+                console.log("Total add time:", totalAddTime.toFixed(2));
+                console.log(
+                    "Average batch add time:",
+                    (totalAddTime / addTimes.length).toFixed(2)
+                );
+                console.log(
+                    "Average marker add time:",
+                    (totalAddTime / addTimes.length / batchSize).toFixed(4)
+                );
+            };
+
+            // Create markers in a bounding box with center at lngLat
+            const createRandomMarkers = function (start, count, lngLat) {
+                const getRandomUniform = function (min, max) {
+                    return Math.random() * (max - min) + min;
+                };
+
+                const t0 = window.performance.now();
+                const boxWidth = 0.1;
+
+                const minLat = lngLat.lat - boxWidth / 2;
+                const maxLat = lngLat.lat + boxWidth / 2;
+                const minLng = lngLat.lng - boxWidth / 2;
+                const maxLng = lngLat.lng + boxWidth / 2;
+
+                const markers = [];
+                for (let i = start; i < start + count; i++) {
+                    const lat = getRandomUniform(minLat, maxLat);
+                    const lng = getRandomUniform(minLng, maxLng);
+
+                    const marker = new SimpleMarker(
+                        i.toString(),
+                        { lat: lat, lng: lng },
+                        { interactive: true }
+                    );
+
+                    markers.push(marker);
+                }
+
+                createTimes.push(window.performance.now() - t0);
+
+                return markers;
+            };
+
+            // Add markers to component in batch
+            const addMarkers = function (markers) {
+                const t0 = window.performance.now();
+                markerComponent.add(markers);
+                addTimes.push(window.performance.now() - t0);
+            };
+
+            // Start creating and adding markers when image has been set
+            mly.moveTo(imageId).then(
+                function (n) {
+                    let intervalId = window.setInterval(function () {
+                        const markers = createRandomMarkers(
+                            markerCount,
+                            batchSize,
+                            n.lngLat
+                        );
+                        addMarkers(markers);
+
+                        markerCount += batchSize;
+
+                        if (markerCount >= 1e6) {
+                            window.clearInterval(intervalId);
+                            logTimes();
+                        }
+                    }, 5);
+                },
+                function (e) {
+                    console.error(e);
+                }
+            );
+</script>
+
+<script type="module">
+  
+  /*var {Viewer} = mapillary;
   var viewer = new Viewer({
     accessToken: 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
-    container: 'mly', // the ID of our container defined in the HTML body
+    container: 'mly', 
     imageId: '1376956613823456',
-  });
+  });*/
+
+    
 </script>
-<body>
+       
+  
 </body>
 </html>

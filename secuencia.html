@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DPV Misines </title>
+        <link rel="icon" href="data:," />
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, user-scalable=no"
+        />
+
+        <link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" />
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+            }
+
+            .viewer {
+                width: 100%;
+                height: calc(100% - 32px);
+            }
+
+            button {
+                margin-top: 4px;
+                margin-left: 6px;
+                height: 24px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script type="module">
+            import {
+                isFallbackSupported,
+                isSupported,
+                CameraControls,
+                RenderMode,
+                Viewer,
+            } from "https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.module.js";
+            
+
+            (function main() {
+                checkSupport();
+
+                const imageId = "850491630689631";
+
+                const container = document.createElement("div");
+                container.className = "viewer";
+                document.body.append(container);
+
+                const viewer = new Viewer({
+                    accessToken : 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
+                    cameraControls: CameraControls.Gravity,
+                    component: { cover: false },
+                    container,
+                    renderMode: RenderMode.Letterbox,
+                });
+
+                viewer.moveTo(imageId).catch((error) => console.warn(error));
+                viewer.setFilter(["==", "cameraType", "spherical"])
+                viewer.setFilter(["in", "sequenceId", "W2I74q5lS1tbOGpk6yPYf0");  
+                viewer.on("load", (event) => console.log(event.type));
+
+                
+            })();
+
+            function checkSupport() {
+                const sup = `isSupported: ${isSupported()}`;
+                const fSup = `isFallbackSupported: ${isFallbackSupported()}`;
+                console.log(`${sup}, ${fSup}`);
+            }
+            
+        </script>
+    </body>
+</html>
