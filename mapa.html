@@ -42,6 +42,8 @@
     <body>
         <div id="mly"></div>
         <div id="map"></div>
+        
+        <script src="json/mojones_rp17.js" type="text/javascript"></script>
 
         <script type="module">
             import {
@@ -79,7 +81,7 @@
             });
 
             mly.setFilter(["==", "cameraType", "spherical"]);
-            mly.setFilter(["in", "sequenceId", "wDqleaJvONRSjT0QUhuBH5"]);
+            mly.setFilter(["in", "sequenceId", "wDqleaJvONRSjT0QUhuBH5", "gC5RDjVFeHhvrkUayfqpJM", "R7P2Wml6gtUM0vHcjVkbEQ", "AjaU2tTZ3mbNzxFgw0lcX6", "0AN9UlcngyCdiRZmG2jJWE", "g6Xou0HWeaLKZOC7isrN5m", "543h8oqrwsa6WbkTetV1vR", "AZRO7War2DwnEgs05ULcbQ", "mRdyZ971WGlkUANIQBLe2a", "FeQgGHCfDEy25w1SqXoAMb", "MsZuviHeDbBTPRG29wLhpA", "XHjVA10tv5zKY6bF2wrh9O", "W026H4TDiUnvcP9bOMyI5l", "DoVSG36ulKLN2PpRmwdaFU", "R1BauLFlwIJezEqSybvh6s", "Sq1L6baiCc2zJUDZEgYW8M", "5Ro2Guv68sUynhDgiOEr1T", "yVmdtq5OPBa0lKzLXCYxHW", "49vtGjTxhkAruXabmUdeEJ", "B9jcP7GsyLnK3iOT4wtC51", "W2I74q5lS1tbOGpk6yPYf0"]);
             
             mly.moveTo(imageId).then(
                 () => {
@@ -106,6 +108,49 @@
                 }),
                 pos: L.circleMarker([0, 0], { radius: 7, color: "#00f" }),
             };
+			
+		function onEachFeature(feature, layer) {
+			
+		const ubicacion = feature.geometry.coordinates.toString().split(",");
+		let popupContent = ubicacion[0];
+		
+		const markerComponent = mly.getComponent("marker");
+		markerComponent.add([
+				new SimpleMarker(
+				  feature.properties.Name,
+				  {
+					lat: ubicacion[1],
+					lng: ubicacion[0],
+				  },
+				  {ballColor: 0xffff00, ballOpacity: 0.5},
+				),
+			  ]);
+			  
+		
+		if (feature.properties && feature.properties.popupContent) {
+			popupContent += feature.properties.popupContent;
+		}
+
+		layer.bindPopup(popupContent);
+	}
+	
+	
+		//Carga de Mojones
+			
+		const MojonesRP17Layer = L.geoJSON(mojones_rp17, {
+
+		filter(feature, layer) {
+			if (feature.properties) {
+				// If the property "underConstruction" exists and is true, return false (don't render features under construction)
+				return feature.properties.underConstruction !== undefined ? !feature.properties.underConstruction : true;
+			}
+			return false;
+		},
+
+		onEachFeature
+	}).addTo(map);
+			
+			
 
             mly.on("image", (viewerImageEvent) => {
                 const image = viewerImageEvent.image;
@@ -134,31 +179,7 @@
             // Get marker component
             const markerComponent = mly.getComponent("marker");
 			
-			
-			
-			 markerComponent.add([
-				
-				new SimpleMarker(
-				  'RP 17 - KM 1 LD',
-				  {
-					lat: -26.4082638,
-					lng: -54.5751733,
-				  },
-				  {ballColor: 0xffff00, ballOpacity: 0.5},
-				),
-			  ]);
-			  
-			  
-			  const mapMarker = L.circleMarker(
-                    [-26.4082638, -54.5751733],
-                    {
-                        radius: 5,
-                        color: "#f00",
-                        draggable: "true",
-                        id: 'KM1',
-                    }
-                ).addTo(map);
-				
+	
 				
   
             // Show a flat circle marker in the viewer when hovering the map
