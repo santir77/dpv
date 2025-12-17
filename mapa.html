@@ -11,11 +11,11 @@
 
         <link rel="stylesheet" href="https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.css" />
         <link
-            href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css"
+            href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
             rel="stylesheet"
         />
 
-        <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet-crs.js"></script>
 
         <style>
             body {
@@ -52,7 +52,7 @@
             
             //import { accessToken } from "/doc-src/.access-token/token.js";
 
-            const imageId = "1649559693086126";
+            const imageId = "1522657735408890";
 
             // Setup map
             const map = L.map("map").setView(
@@ -139,14 +139,26 @@
 			 markerComponent.add([
 				
 				new SimpleMarker(
-				  'fixed-1',
+				  'RP 17 - KM 1 LD',
 				  {
-					lat: -26.40844032798278,
-					lng: -54.581478159094274,
+					lat: -26.4082638,
+					lng: -54.5751733,
 				  },
-				  {ballColor: 0x000000, ballOpacity: 1},
+				  {ballColor: 0xffff00, ballOpacity: 0.5},
 				),
 			  ]);
+			  
+			  
+			  const mapMarker = L.circleMarker(
+                    [-26.4082638, -54.5751733],
+                    {
+                        radius: 5,
+                        color: "#f00",
+                        draggable: "true",
+                        id: 'KM1',
+                    }
+                ).addTo(map);
+				
   
             // Show a flat circle marker in the viewer when hovering the map
             let mapHoverViewerMarker;
