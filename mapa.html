@@ -54,14 +54,34 @@
             } from "https://unpkg.com/mapillary-js@4.1.2/dist/mapillary.module.js";
             
             //import { accessToken } from "/doc-src/.access-token/token.js";
+			
+			const urlParams = new URLSearchParams(window.location.search);
+			const imageIdURL = urlParams.get('imageId');
+			//alert(urlParamsrlParams.get('imageId'));
+			
+			let imageId = 0;
+			
+			
+			if (imageIdURL !== null) {
+			  // The 'imageIdURL' parameter exists in the URL
+			  console.log('Image ID:', imageIdURL);
+			  imageId = imageIdURL;
+			} else {
+			  // The 'imageIdURL' parameter is missing
+			  console.log('No Image ID found.');
+			   imageId = "1522657735408890";
+			}
+			
+			
 
-            const imageId = "1522657735408890";
 
             // Setup map
             const map = L.map("map").setView(
                 [-26.40844032798278, -54.581478159094274],
                 14
             );
+			
+			
             const osmUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
             const osmAttrib =
                 'Map data © <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a> contributors.<a href="https://sigvial.dpvmisiones.gob.ar" target="_blank">SIGVial DPV Misiones</a>';
@@ -76,7 +96,7 @@
             const mly = new Viewer({
                 accessToken: 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
                 component: {
-                    marker: { visibleBBoxSize: 1000 },
+                    marker: { visibleBBoxSize: 3000 },
 					cover : true,
 					direction: true,
                 },
@@ -115,7 +135,7 @@
 		function onEachFeature(feature, layer) {
 			
 		const ubicacion = feature.geometry.coordinates.toString().split(",");
-		let popupContent = "<p>"+feature.properties.Name+"<br>Lat:"+ubicacion[0]+"<br>Long:"+ubicacion[1]+"</p>";
+		let popupContent = feature.properties.Name+"<br><a href='mapa.html?imageId="+feature.properties.id+"'>Ir a Ubicación</a><br><br><a href='https://www.mapillary.com/app/user/santiagoperalta?lat="+ubicacion[1]+"&lng="+ubicacion[0]+"&dateFrom=2025-10-01&z=17.816946256817843' target='_blank'>Mapillary</a></p>";
 		
 		const markerComponent = mly.getComponent("marker");
 		markerComponent.add([
@@ -207,7 +227,7 @@
                     },
                     { color: "#0f0" }
                 );
-
+				
                 markerComponent.add([mapHoverViewerMarker]);
             };
 
