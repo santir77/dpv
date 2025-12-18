@@ -40,11 +40,10 @@
     </head>
 
     <body>
-        <h3>Navegador RP17</h3>
-        <div>
+
         <div id="mly"></div>
         <div id="map"></div>
-        </div>
+
         <script src="json/mojones_rp17.js" type="text/javascript"></script>
 
         <script type="module">
@@ -77,7 +76,7 @@
             const mly = new Viewer({
                 accessToken: 'MLY|23983930767964164|8c1fc16b90b963e2400cd349bbf7fcbe',
                 component: {
-                    marker: { visibleBBoxSize: 100 },
+                    marker: { visibleBBoxSize: 1000 },
 					cover : true,
 					direction: true,
                 },
