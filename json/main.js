@@ -93,7 +93,7 @@
 		function onEachFeature(feature, layer) {
 			
 		const ubicacion = feature.geometry.coordinates.toString().split(",");
-		let popupContent = "<b>"+feature.properties.Name+"</b><br><a href='mapa.html?imageId="+feature.properties.id+"&lat="+ubicacion[1]+"&lng="+ubicacion[0]+"'>Ir a Ubicación</a><br><br>lat="+ubicacion[1]+"&lng="+ubicacion[0]+"<br><br><a href='https://www.mapillary.com/app/user/santiagoperalta?lat="+ubicacion[1]+"&lng="+ubicacion[0]+"&dateFrom=2025-10-01&z=17.816946256817843&pKey="+feature.properties.id+"' target='_blank'>Ir a Mapillary</a></p>";
+		let popupContent = "<b>"+feature.properties.Name+"</b><br><a href='rp17_202508.html?imageId="+feature.properties.id+"&lat="+ubicacion[1]+"&lng="+ubicacion[0]+"'>Ir a Ubicación</a><br><br>lat="+ubicacion[1]+"&lng="+ubicacion[0]+"<br><br><a href='https://www.mapillary.com/app/user/santiagoperalta?lat="+ubicacion[1]+"&lng="+ubicacion[0]+"&dateFrom=2025-10-01&z=17.816946256817843&pKey="+feature.properties.id+"' target='_blank'>Ir a Mapillary</a></p>";
 		
 		const markerComponent = mly.getComponent("marker");
 		markerComponent.add([
