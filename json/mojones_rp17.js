@@ -54,7 +54,7 @@ var mojones_rp17= {
 { "type": "Feature", "properties": { "fid": 1020, "id": 4242412322746145, "Name": "RP 17 - KM 50 LI" }, "geometry": { "type": "Point", "coordinates": [ -54.179818957122173, -26.3400542093644 ] } },
 { "type": "Feature", "properties": { "fid": 1021, "id": 1255189659607943, "Name": "RP 17 - KM 51 LD" }, "geometry": { "type": "Point", "coordinates": [ -54.171195899050353, -26.338043491945609 ] } },
 { "type": "Feature", "properties": { "fid": 1022, "id": 827397016928298, "Name": "RP 17 - KM 52 LI" }, "geometry": { "type": "Point", "coordinates": [ -54.16202733547064, -26.34198545141588 ] } },
-{ "type": "Feature", "properties": { "fid": 1023, "id": 0, "Name": "RP 17 - KM 53 LD" }, "geometry": { "type": "Point", "coordinates": [ -54.153118879595901, -26.345913909139711 ] } },
+/*{ "type": "Feature", "properties": { "fid": 1023, "id": 0, "Name": "RP 17 - KM 53 LD" }, "geometry": { "type": "Point", "coordinates": [ -54.153118879595901, -26.345913909139711 ] } },
 { "type": "Feature", "properties": { "fid": 1024, "id": 0, "Name": "RP 17 - KM 54 LI" }, "geometry": { "type": "Point", "coordinates": [ -54.143323716859932, -26.347595504474739 ] } },
 { "type": "Feature", "properties": { "fid": 1025, "id": 0, "Name": "RP 17 - KM 55 LD" }, "geometry": { "type": "Point", "coordinates": [ -54.133627761565641, -26.346057352191831 ] } },
 { "type": "Feature", "properties": { "fid": 1026, "id": 0, "Name": "RP 17 - KM 56 LI" }, "geometry": { "type": "Point", "coordinates": [ -54.12476415143081, -26.345293163327831 ] } },
@@ -107,6 +107,6 @@ var mojones_rp17= {
 { "type": "Feature", "properties": { "fid": 1073, "id": 0, "Name": "RP 17 - KM 103 LD" }, "geometry": { "type": "Point", "coordinates": [ -53.773153253325233, -26.293746261539258 ] } },
 { "type": "Feature", "properties": { "fid": 1074, "id": 0, "Name": "RP 17 - KM 104 LI" }, "geometry": { "type": "Point", "coordinates": [ -53.763183396754179, -26.293334199217991 ] } },
 { "type": "Feature", "properties": { "fid": 1075, "id": 0, "Name": "RP 17 - KM 105 LD" }, "geometry": { "type": "Point", "coordinates": [ -53.753241716797078, -26.295384207171789 ] } },
-{ "type": "Feature", "properties": { "fid": 1076, "id": 0, "Name": "RP 17 - KM 106 LI" }, "geometry": { "type": "Point", "coordinates": [ -53.743706244299233, -26.293446557573869 ] } }
+{ "type": "Feature", "properties": { "fid": 1076, "id": 0, "Name": "RP 17 - KM 106 LI" }, "geometry": { "type": "Point", "coordinates": [ -53.743706244299233, -26.293446557573869 ] } }*/
 ]
 }
