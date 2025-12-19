@@ -419,7 +419,7 @@
                         draggable: "true",
                         id: id,
                     }
-                ).addTo(map);
+                ).addTo(map).bindPopup("lat:"+viewerLngLat.lat+"&lng:"+viewerLngLat.lng).openPopup();
 
                 mapMarkers[id] = mapMarker;
                 handleMapMarkerDrag(mapMarker);
